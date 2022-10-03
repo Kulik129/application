@@ -21,12 +21,16 @@ public class PanelController extends JComponentController<JComponent> {
     private final ApplicationContext appContext;
     private final JComponentController<JTextField> textFieldController;
     private final JComponentWriterController<JButton> buttonWriterToLoggerController;
+    private  final JComponentWriterController<JButton> buttonWriterToFileController;
+    private  final JComponentWriterController<JButton> buttonWriterToCSVFileController;
 
     public PanelController(final ApplicationContext appContext) {
         super(new ArrayList<>());
         this.appContext = appContext;
         this.textFieldController = new TextFieldController();
         this.buttonWriterToLoggerController = new ButtonWriterToLoggerController();
+        this.buttonWriterToFileController = new ButtonWriterToFileController();
+        this.buttonWriterToCSVFileController = new ButtonWriterToCSVFileController();
         initTextInputPanel();
         initButtonPanel();
     }
@@ -49,19 +53,26 @@ public class PanelController extends JComponentController<JComponent> {
 
     private void initTextInputPanel() {
         final JPanel textInputPanel = new JPanel();
-        textInputPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+        textInputPanel.setBorder(BorderFactory.createLineBorder(Color.GREEN));
 
         for (final JTextField textField : textFieldController.getComponents()) {
             textInputPanel.add(textField);
         }
         getComponents().add(textInputPanel);
     }
-
     private void initButtonPanel() {
         final JPanel buttonPanel = new JPanel();
-        buttonPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+        buttonPanel.setBorder(BorderFactory.createLineBorder(Color.GREEN));
 
         for (final JButton button : buttonWriterToLoggerController.getComponents()) {
+            buttonPanel.add(button);
+        }
+
+        for (final JButton button : buttonWriterToFileController.getComponents()) {
+            buttonPanel.add(button);
+        }
+
+        for (final JButton button : buttonWriterToCSVFileController.getComponents()) {
             buttonPanel.add(button);
         }
 
